@@ -1,6 +1,6 @@
 Feature Selection
 --------------------------------------------------
--Remove outliers
+-Remove outliers that represent damaged or miscollected data 
 -Use PCA to find relevant features
 
 Models
