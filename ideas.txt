@@ -1,0 +1,9 @@
+Feature Selection
+--------------------------------------------------
+-Remove outliers
+-Use PCA to find relevant features
+
+Models
+--------------------------------------------------
+-Linear regression
+-Boosting
