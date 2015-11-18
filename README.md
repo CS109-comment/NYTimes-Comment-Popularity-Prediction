@@ -1,3 +1,5 @@
-# Rainfall Prediction Data Science Project
-We predict rainfall from (amongst others) radar data, as part of a Kaggle competition and a final course project.
+# NYTimes Comment Popularity Prediction
 
+We predict NYTimes comment popularity from various sources, as part of our Harvard CS109 final course project
+
+See ideas.md for project ideas
