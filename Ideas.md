@@ -1,10 +1,14 @@
-### Feature Selection
+### Features
 
-- Remove outliers that represent damaged or miscollected data. 
-- Use PCA to find relevant features.
+- Comment length
+- Sentiment of comment
+- Topic of comment
+- Topic/sentiment of lead article commented on
 
 
 ### Models
 
-- Linear regression
-- Boosting
+- Ridge regression for feature selection
+- Linear regression with interactions
+- Ensemble?
+
