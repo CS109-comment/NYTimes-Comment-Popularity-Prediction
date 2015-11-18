@@ -5,9 +5,15 @@
 #
 # I used simplejson, which you can install with pip, because it gives better error messages,
 # but you can just replace simplejson with json and it should work the same.
+#
+# This version is very error-tolerant. It can deal with invalid JSON and stores the results
+# for each day separately to guard against crashes. We then have to combine ~600 text files,
+# but this shouldn't be too hard, and is in my opinion worth it since the NY Times is so much
+# trouble.
 
 import requests, time, simplejson, sys
 from datetime import date, datetime, timedelta
+
 def perdelta(start, end, delta):
     curr = start
     while curr < end:
@@ -15,50 +21,37 @@ def perdelta(start, end, delta):
         curr += delta
 
 # Scrape 300 comments per day from Nov. 1, 2014 to Oct. 31, 2015
-comments = []
-for da in perdelta(date(2014, 11, 1), date(2015, 11, 1), timedelta(days=1)):
+for da in perdelta(date(2015, 2, 21), date(2015, 11, 1), timedelta(days=1)):
+    comments = []
     print da
-    for i in range(12):
-        url = ('http://api.nytimes.com/svc/community/v3/user-content/' +
-               'by-date.json?api-key=PUTYOURAPIKEYHERE&date=' + str(da) + # put your API key in here
-               '&offset=' + str(25*i))
-        comments_data = requests.get(url)
-        try:
-            data = simplejson.loads(comments_data.content) # error happens here
-        except:
-            print url, comments_data, comments_data.content
-            sys.exit()
-        for d in data['results']['comments']:
-            comments.append(d)
-        time.sleep(2)
-
-# Save the data
-with open("comments.json", 'w') as f:
-    simplejson.dump(comments, f)
-
-# Uncomment for error-tolerant version
-#
-# for da in perdelta(date(2014, 11, 5), date(2015, 11, 1), timedelta(days=1)):
-#     comments = []
-#     print da
-#     for i in range(12):
-#         success = False
-#         url = ('http://api.nytimes.com/svc/community/v3/user-content/' +
-#                'by-date.json?api-key=KEY&date=' + str(da) +
-#                '&offset=' + str(25*i))
-#         while not success:
-#             comments_data = requests.get(url)
-#             try:
-#                 data = simplejson.loads(comments_data.content)
-#                 success = True
-#                 for d in data['results']['comments']:
-#                     comments.append(d)
-#                 time.sleep(2)
-#             except:
-#                 print 'error on {}'.format(str(da))
-#                 print url
-#                 time.sleep(2)
-                
-#     filestr = 'comments {}.json'.format(str(da))
-#     with open(filestr, 'w') as f:
-#         simplejson.dump(comments, f)
+    skip = False
+    gotany = True
+    for i in range(12): # collect 25*12=300 comments
+        if not skip:
+            success = False
+            count = 0
+            url = ('http://api.nytimes.com/svc/community/v3/user-content/' +
+                   'by-date.json?api-key=KEY&date=' + str(da) +
+                   '&offset=' + str(25*i))
+            while not success:
+                comments_data = requests.get(url)
+                try:
+                    data = simplejson.loads(comments_data.content)
+                    success = True # go to the next offset
+                    for d in data['results']['comments']:
+                        comments.append(d)
+                    time.sleep(2)
+                except:
+                    print 'error on {}'.format(str(da))
+                    print url
+                    count += 1
+                    if count > 3:
+                        success = True # not really
+                        skip = True # just skip to the next day
+                        if i == 0:
+                            gotany = False # if we didn't get any comments from that day
+                    time.sleep(2)
+    if gotany:      
+        filestr = 'comments {}.json'.format(str(da))
+        with open(filestr, 'w') as f:
+            simplejson.dump(comments, f)
