@@ -55,3 +55,13 @@ for da in perdelta(date(2015, 2, 21), date(2015, 11, 1), timedelta(days=1)):
         filestr = 'comments {}.json'.format(str(da))
         with open(filestr, 'w') as f:
             simplejson.dump(comments, f)
+
+# Short script to combine all the JSON lists into one
+allcomments = []
+for d in perdelta(date(2014, 1, 1), date(2015, 12, 31), timedelta(days=1)):
+    try:
+        with open('comments {}.json'.format(str(d))) as f:
+            c = simplejson.load(f)
+            allcomments.extend(c)
+    except:
+        pass
