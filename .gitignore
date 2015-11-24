@@ -58,6 +58,8 @@ target/
 
 # Data
 *.csv
+*.json
 data/
 train/
 test/
+*.txt
