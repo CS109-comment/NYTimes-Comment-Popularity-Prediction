@@ -62,4 +62,4 @@ target/
 data/
 train/
 test/
-*.txt
+# *.txt
