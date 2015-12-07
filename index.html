@@ -2,7 +2,7 @@
 <html lang="en-us">
   <head>
     <meta charset="UTF-8">
-    <title>NYT Comment Prediction by CS109-comment</title>
+    <title>New York Times Comment Prediction by CS109-comment</title>
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link rel="stylesheet" type="text/css" href="stylesheets/normalize.css" media="screen">
     <link href='https://fonts.googleapis.com/css?family=Open+Sans:400,700' rel='stylesheet' type='text/css'>
@@ -11,8 +11,8 @@
   </head>
   <body>
     <section class="page-header">
-      <h1 class="project-name">NYT Comment Prediction</h1>
-      <h2 class="project-tagline">Predicting popularity and success for a New York Times Comment</h2>
+      <h1 class="project-name">New York Times Comment Prediction</h1>
+      <h2 class="project-tagline">Predicting popularity and success for a New York Times comment online. </h2>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction" class="btn">View on GitHub</a>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction/tarball/master" class="btn">Download .tar.gz</a>
@@ -20,14 +20,47 @@
 
     <section class="main-content">
       <h1>
-<a id="nytimes-comment-popularity-prediction" class="anchor" href="#nytimes-comment-popularity-prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>NYTimes Comment Popularity Prediction</h1>
+<a id="predicting-new-york-times-comment-success" class="anchor" href="#predicting-new-york-times-comment-success" aria-hidden="true"><span class="octicon octicon-link"></span></a>Predicting New York Times comment success</h1>
 
-<p>We predict NYTimes comment popularity from various sources, as part of our Harvard CS109 final course project</p>
+<p><img src="NewYorkTimes_Logo.jpg" alt="New York Times Logo"></p>
 
-<p>See <a href="https://github.com/1Reinier/NYTimes-Comment-Popularity-Prediction/blob/master/Ideas.md">ideas.md</a> for project ideas.</p>
+<h2>
+<a id="background" class="anchor" href="#background" aria-hidden="true"><span class="octicon octicon-link"></span></a>Background</h2>
+
+<p>As one of the most popular online news entities, The New York Times (NYT) <a href="http://www.journalism.org/media-indicators/digital-top-50-online-news-entities-2015/">attracts thousands</a> of unique visitors each day to its website, <a href="http://www.nytimes.com">nytimes.com</a>. Users who visit the site can provide their thoughts and reactions to published content by posting comments. </p>
+
+<p>The website receives around 9,000 submitted comments per day, over 60,000 unique contributors per month, and approximately two million comment recommendations (i.e., "likes") <a href="http://www.nytimes.com/2015/11/23/insider/the-most-popular-reader-comments-on-the-times.html">each month</a>. There is a dedicated staff committed to review each submission one-by-one and even hand-select the very best comments as "NYT Picks."</p>
+
+<p>The Times embraces this personal, intimate approach to comment moderation based on the hypothesis that "readers of The Times would demand an elevated experience." Click <a href="http://www.nytimes.com/2015/11/23/insider/the-most-popular-reader-comments-on-the-times.html">here</a> to learn more about the staff at the NYT who work on this.</p>
+
+<h2>
+<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
+
+<p>We have examined the relationship between comment success (i.e., the number of recommendations it receives by other users and if it is selected as a NYT Pick) as well as other features about the comments themselves. Specifically, we have built a model that can predict the success of a given comment. We envision this model as a complementary tool that could be used by the moderators during their daily review of comments. For example, perhaps there is a comment they are unsure about; they could run our model to see the comment's predicted success.</p>
+
+<p>This tool could also benefit the commentor's themselves. Perhaps this model could help a commenter predict how their draft comment would perform once submitted. An effective prediction system could also be used in an automated comment recommender to help steer users toward higher quality content. </p>
+
+<p>The Times cares about its comments, as is evident in a recent <a href="http://www.nytimes.com/interactive/2015/11/23/nytnow/23commenters.html?_r=0">piece</a> published where their top 14 commenters were identified and interviewed. </p>
+
+<p><img src="Top%20Commenters.png" width="600"></p>
+
+<h2>
+<a id="comments-comments-comments" class="anchor" href="#comments-comments-comments" aria-hidden="true"><span class="octicon octicon-link"></span></a>Comments, Comments, Comments</h2>
+
+<p>The NYT website receives nearly a quarter million comment submissions a month. After analyzing a set of 180,000 comments spanning 2 years, we were able to learn some interesting statistics about all these comments. </p>
+
+<h3>
+<a id="most-people-only-comment-once" class="anchor" href="#most-people-only-comment-once" aria-hidden="true"><span class="octicon octicon-link"></span></a>Most people only comment once</h3>
+
+<p>Assuming commenters do not use multiple accounts, the statistics indicate that most comments come from users who have never posted before. In other words, <strong>users who post, only post once</strong>. </p>
+
+<h3>
+<a id="most-comments-receive" class="anchor" href="#most-comments-receive" aria-hidden="true"><span class="octicon octicon-link"></span></a>Most comments receive</h3>
+
+<p><img src="NYT%20Pick%20ex.png" width="600"></p>
 
       <footer class="site-footer">
-        <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">NYT Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
+        <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">New York Times Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
 
         <span class="site-footer-credits">This page was generated by <a href="https://pages.github.com">GitHub Pages</a> using the <a href="https://github.com/jasonlong/cayman-theme">Cayman theme</a> by <a href="https://twitter.com/jasonlong">Jason Long</a>.</span>
       </footer>
