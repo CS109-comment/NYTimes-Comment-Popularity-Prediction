@@ -118,7 +118,13 @@
 
 <p>Our Random Forest Classifier performed okay, with a precision of 0.98, and a recall of 0.75. The accuracy, at 0.75, was unfortunately not higher than a baseline 'low' predictor.</p>
 
-<p>Here is the confusion matrix:</p>
+<p>Here's a summary of our results:</p>
+
+<p align="center">
+    <img src="confusion.png">
+</p>
+
+<p>As you can see, we are dealing with a substantial amount of false negatives. This means it is hard for the model to mark actual good posts as good. Identifying bad comments, ones that have a low recommendation count, on the other hand, is easy.</p>
 
 <h2>
 <a id="discussion" class="anchor" href="#discussion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discussion</h2>
