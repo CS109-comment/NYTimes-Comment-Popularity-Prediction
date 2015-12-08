@@ -12,7 +12,7 @@
   <body>
     <section class="page-header">
       <h1 class="project-name">New York Times Comment Prediction</h1>
-      <h2 class="project-tagline">Predicting popularity and success for a New York Times comment online. </h2>
+      <h2 class="project-tagline">Andrew Petschek, Jonathan Friedman, Reinier Maat</h2>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction" class="btn">View on GitHub</a>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction/zipball/master" class="btn">Download .zip</a>
       <a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction/tarball/master" class="btn">Download .tar.gz</a>
@@ -34,7 +34,7 @@
 <p>The Times embraces this personal, intimate approach to comment moderation based on the hypothesis that "readers of The Times would demand an elevated experience." Click <a href="http://www.nytimes.com/2015/11/23/insider/the-most-popular-reader-comments-on-the-times.html">here</a> to learn more about the staff at the NYT who work on this.</p>
 
 <h2>
-<a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h2>
+<a id="our-angle" class="anchor" href="#our-angle" aria-hidden="true"><span class="octicon octicon-link"></span></a>Our Angle</h2>
 
 <p>We have examined the relationship between comment success (i.e., the number of recommendations it receives by other users and if it is selected as a NYT Pick) as well as other features about the comments themselves. Specifically, we have built a model that can predict the success of a given comment. We envision this model as a complementary tool that could be used by the moderators during their daily review of comments. For example, perhaps there is a comment they are unsure about; they could run our model to see the comment's predicted success.</p>
 
@@ -66,33 +66,68 @@
 
 <p><img src="NYT%20Pick%20ex.png" width="600"></p>
 
+<h2>
+<a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h2>
+
+<h3>
+<a id="scraping" class="anchor" href="#scraping" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scraping</h3>
+
+<p>We obtained the comment data from The New York Times <a href="http://developer.nytimes.com/docs">API</a>. The API operates similarly to the Huffington Post API that was used earlier in the course.</p>
+
 <h3>
 <a id="transformation" class="anchor" href="#transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformation</h3>
 
-<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'. </p>
-
-<h2>
-<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
-
-<p>We tried several models of which only one had a reasonably good performance. This model was the Random Forest Classifier.</p>
+<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'.  </p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
 
-<h3>
-<a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h3>
+<h4>
+<a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h4>
 
-<h3>
-<a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h3>
+<p>Longer, more sophisticated word usage may correlate with better comments.</p>
 
-<h3>
-<a id="bag-of-words" class="anchor" href="#bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bag of words</h3>
+<h4>
+<a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h4>
 
-<h3>
-<a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h3>
+<p>The word count may be indicative of the quality of a comment.</p>
 
-<h3>
-<a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h3>
+<h4>
+<a id="bag-of-words" class="anchor" href="#bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bag of words</h4>
+
+<p>We use a binary bag of words feature that encodes which of the <em>n</em> most popular words appear in a comment.</p>
+
+<h4>
+<a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h4>
+
+<p>We used sentiment analysis to extract a positive and negative sentiment score for every comment. We hypothesized that comment recommendations may depend on sentiment, as posts with a strong sentiment are likely to be more controversial than neutral posts.</p>
+
+<h4>
+<a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h4>
+
+<p>Intuitively, tf-idf measures how important a word is in a document compared with how important the word is to the corpus as a whole. Words that appear frequently in documents but appear rarely in the corpus receive high scores.</p>
+
+<h2>
+<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
+
+<p>We tried several models of which only one had a reasonably good performance, which was the Random Forest Classifier.</p>
+
+<h2>
+<a id="results" class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
+
+<p><strong>Plots</strong></p>
+
+<h2>
+<a id="discussion" class="anchor" href="#discussion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discussion</h2>
+
+<p>We had a great deal of trouble generating an even moderately useful prediction. There were two main reasons for this: (1) highly unbalanced data, and (2) the difficulty of natural language processing.</p>
+
+<ul>
+<li><p><strong>Unbalanced data:</strong> As we showed in exploratory data analysis section, the vast majority of comments comments have very few recommendations, and only a small proportion of comments are designated editor's choices. This results in a dataset where predicting zero recommendations and editor's choices is effective at minimizing error. It is, in general, hard to make any sort of good predictions when the data is this unbalanced. One straightforward, but time-consuming, approach to ameliorating this problem is to get more data. This would likely be the first step in a future analysis. 180,000 comments is only a small proportion of the total comments posted each year, and collecting more data would give us more popular comments on which to train our models.</p></li>
+<li><p><strong>NLP:</strong> NLP is a deep and complicated field, and since we did not have prior experience, we were able to perform only rudimentary feature selection. Given more time, we could research and implement more sophisticated feature selection techniques and engineer features that carry more information about the comments.</p></li>
+</ul>
+
+<p>We could further improve our model by exploring how an article relates to its comments. As a simple example, positive sentiment sentiment comments on restaurant reviews might fare better than positive comments on highly politicized editorials. A model could derive more complex relationships. With a larger sample of comments and article data, we could use a deep learning approach to derive insights from the complicated relationships between articles and comments, and between comments and other comments. Building a model that incorporates article text and metadata could be very powerful; unfortunately, it would also require much more data scraping and much more sophisticated methods, both of which are time-prohibitive.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">New York Times Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
