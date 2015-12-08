@@ -74,12 +74,7 @@
 <h3>
 <a id="transformation" class="anchor" href="#transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformation</h3>
 
-<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'. </p>
-
-<h2>
-<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
-
-<p>We tried several models of which only one had a reasonably good performance, which was the Random Forest Classifier. </p>
+<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'.  </p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -87,7 +82,7 @@
 <h3>
 <a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h3>
 
-<p>Longer, more sophisticated word usage may correlate with better comments</p>
+<p>Longer, more sophisticated word usage may correlate with better comments.</p>
 
 <h3>
 <a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h3>
@@ -97,7 +92,7 @@
 <h3>
 <a id="bag-of-words" class="anchor" href="#bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bag of words</h3>
 
-<p>We use a binary bag of words feature that encodes which of the $n$ most popular words appear in a comment.</p>
+<p>We use a binary bag of words feature that encodes which of the <em>n</em> most popular words appear in a comment.</p>
 
 <h3>
 <a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h3>
@@ -108,6 +103,28 @@
 <a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h3>
 
 <p>Intuitively, tf-idf measures how important a word is in a document compared with how important the word is to the corpus as a whole. Words that appear frequently in documents but appear rarely in the corpus receive high scores.</p>
+
+<h2>
+<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
+
+<p>We tried several models of which only one had a reasonably good performance, which was the Random Forest Classifier.</p>
+
+<h2>
+<a id="results" class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
+
+<p><strong>Plots</strong></p>
+
+<h2>
+<a id="discussion" class="anchor" href="#discussion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discussion</h2>
+
+<p>We had a great deal of trouble generating an even moderately useful prediction. There were two main reasons for this: (1) highly unbalanced data, and (2) the difficulty of natural language processing.</p>
+
+<ul>
+<li><p><strong>Unbalanced data:</strong> As we showed in exploratory data analysis section, the vast majority of comments comments have very few recommendations, and only a small proportion of comments are designated editor's choices. This results in a dataset where predicting zero recommendations and editor's choices is effective at minimizing error. It is, in general, hard to make any sort of good predictions when the data is this unbalanced. One straightforward, but time-consuming, approach to ameliorating this problem is to get more data. This would likely be the first step in a future analysis. 180,000 comments is only a small proportion of the total comments posted each year, and collecting more data would give us more popular comments on which to train our models.</p></li>
+<li><p><strong>NLP:</strong> NLP is a deep and complicated field, and since we did not have prior experience, we were able to perform only rudimentary feature selection. Given more time, we could research and implement more sophisticated feature selection techniques and engineer features that carry more information about the comments.</p></li>
+</ul>
+
+<p>We could further improve our model by exploring how an article relates to its comments. As a simple example, positive sentiment sentiment comments on restaurant reviews might fare better than positive comments on highly politicized editorials. A model could derive more complex relationships. With a larger sample of comments and article data, we could use a deep learning approach to derive insights from the complicated relationships between articles and comments, and between comments and other comments. Building a model that incorporates article text and metadata could be very powerful; unfortunately, it would also require much more data scraping and much more sophisticated methods, both of which are time-prohibitive.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">New York Times Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
