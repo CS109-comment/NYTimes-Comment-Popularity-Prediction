@@ -67,6 +67,11 @@
 <p><img src="NYT%20Pick%20ex.png" width="600"></p>
 
 <h3>
+<a id="scraping" class="anchor" href="#scraping" aria-hidden="true"><span class="octicon octicon-link"></span></a>Scraping</h3>
+
+<p>We obtained the comment data from The New York Times <a href="http://developer.nytimes.com/docs">API</a>. The API operates similarly to the Huffington Post API that was used earlier in the course.</p>
+
+<h3>
 <a id="transformation" class="anchor" href="#transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformation</h3>
 
 <p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'. </p>
@@ -74,7 +79,7 @@
 <h2>
 <a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
 
-<p>We tried several models of which only one had a reasonably good performance. This model was the Random Forest Classifier.</p>
+<p>We tried several models of which only one had a reasonably good performance, which was the Random Forest Classifier. </p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -82,17 +87,33 @@
 <h3>
 <a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h3>
 
+<p>Longer, more sophisticated word usage may correlate with better comments</p>
+
 <h3>
 <a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h3>
+
+<p>Idem for word count.</p>
 
 <h3>
 <a id="bag-of-words" class="anchor" href="#bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bag of words</h3>
 
+<p>We use a binary bag of words feature that encodes which of the $n$ most popular words appear in a comment.</p>
+
 <h3>
 <a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h3>
 
+<p>We used sentiment analysis to extract a positive and negative sentiment score for every comment. We hypothesized that comment recommendations may depend on sentiment, as posts with a strong sentiment are likely to be more controversial than neutral posts.</p>
+
 <h3>
 <a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h3>
+
+<p>We add a column to the dataframe composed of the average tf-idf (term frequency-inverse document frequency) score over all words in a comment. The tf score for term $t$ in document $d$ is given by the number of times $t$ appears in $d$. The idf score for $t$ in a corpus $D$ is given by</p>
+
+<p>$$\log \frac{N}{|{d \in D: t \in d}|}$$</p>
+
+<p>where $N$ is the total number of documents, and $|{d \in D: t \in d}|$ is the total number of documents containing $t$. The tf-idf score for $t$ in $d$ is the $tf$ score multiplied by the $idf$ score.</p>
+
+<p>Intuitively, tf-idf measures how important a word is in a document compared with how important the word is to the corpus as a whole. Words that appear frequently in documents but appear rarely in the corpus receive high scores.</p>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">New York Times Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
