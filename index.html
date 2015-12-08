@@ -34,7 +34,7 @@
 <p>The Times embraces this personal, intimate approach to comment moderation based on the hypothesis that "readers of The Times would demand an elevated experience." Click <a href="http://www.nytimes.com/2015/11/23/insider/the-most-popular-reader-comments-on-the-times.html">here</a> to learn more about the staff at the NYT who work on this.</p>
 
 <h2>
-<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
+<a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h2>
 
 <p>We have examined the relationship between comment success (i.e., the number of recommendations it receives by other users and if it is selected as a NYT Pick) as well as other features about the comments themselves. Specifically, we have built a model that can predict the success of a given comment. We envision this model as a complementary tool that could be used by the moderators during their daily review of comments. For example, perhaps there is a comment they are unsure about; they could run our model to see the comment's predicted success.</p>
 
@@ -62,12 +62,37 @@
 <h3>
 <a id="its-hard-to-be-a-nyt-pick" class="anchor" href="#its-hard-to-be-a-nyt-pick" aria-hidden="true"><span class="octicon octicon-link"></span></a>It's hard to be a NYT Pick</h3>
 
-<p>Out of our 180,000 comments, we found less than 3% to be designated as NYT picks. Of those picks, we see that they get more recommendations that those that are not picks. Specifically, NYT Picks comments receive an average of 180 recommendations. We suspect there is a high correlation between recommendation count and NYT Pick, but it is an interesting statistic nonetheless. </p>
+<p>Out of our 180,000 comments, we found less than 3% to be designated as Editor's Pick. Of those picks, we see that they get more recommendations that those that are not picks. Specifically, NYT Picks comments receive an average of 180 recommendations. We suspect there is a high correlation between recommendation count and NYT Pick, but it is an interesting statistic nonetheless. </p>
 
 <p><img src="NYT%20Pick%20ex.png" width="600"></p>
 
 <h3>
-<a id="prediction" class="anchor" href="#prediction" aria-hidden="true"><span class="octicon octicon-link"></span></a>Prediction</h3>
+<a id="transformation" class="anchor" href="#transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformation</h3>
+
+<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'. </p>
+
+<h2>
+<a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
+
+<p>We tried several models of which only one had a reasonably good performance. This model was the Random Forest Classifier.</p>
+
+<h2>
+<a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
+
+<h3>
+<a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h3>
+
+<h3>
+<a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h3>
+
+<h3>
+<a id="bag-of-words" class="anchor" href="#bag-of-words" aria-hidden="true"><span class="octicon octicon-link"></span></a>Bag of words</h3>
+
+<h3>
+<a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h3>
+
+<h3>
+<a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h3>
 
       <footer class="site-footer">
         <span class="site-footer-owner"><a href="https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction">New York Times Comment Prediction</a> is maintained by <a href="https://github.com/CS109-comment">CS109-comment</a>.</span>
