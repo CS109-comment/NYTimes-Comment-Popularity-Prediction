@@ -79,7 +79,7 @@
 <h3>
 <a id="transformation" class="anchor" href="#transformation" aria-hidden="true"><span class="octicon octicon-link"></span></a>Transformation</h3>
 
-<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that was classified 'high'.  </p>
+<p>We transformed the recommendation count of all comments into two classes, 'high' and 'low', to make prediction easier. This meant that all comments with less than 16 recommendations were considered 'low' (the 75th percentile) and all above that were classified 'high'.  </p>
 
 <h2>
 <a id="features" class="anchor" href="#features" aria-hidden="true"><span class="octicon octicon-link"></span></a>Features</h2>
@@ -117,7 +117,9 @@
 <h2>
 <a id="results" class="anchor" href="#results" aria-hidden="true"><span class="octicon octicon-link"></span></a>Results</h2>
 
-<p><strong>Plots and text</strong></p>
+<p>Our model performed reasonably, with a precision of 0.98, and a recall of 0.75. The accuracy, at 0.75, was not higher than a baseline 'low' predictor.</p>
+
+<p>Here is the confusion matrix:</p>
 
 <h2>
 <a id="discussion" class="anchor" href="#discussion" aria-hidden="true"><span class="octicon octicon-link"></span></a>Discussion</h2>
