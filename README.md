@@ -1,5 +1,5 @@
 # NYTimes Comment Popularity Prediction
 
-We predict NYTimes comment popularity from various sources, as part of our Harvard CS109 final course project
+For our AC209 (Data Science) final course project, we predicted New York Times comment popularity.
 
-See [ideas.md](https://github.com/1Reinier/NYTimes-Comment-Popularity-Prediction/blob/master/Ideas.md) for project ideas.
+First, [check out our website](http://cs109-comment.github.io/NYTimes-Comment-Popularity-Prediction/)! Then, [check out our IPython notebook](https://github.com/CS109-comment/NYTimes-Comment-Popularity-Prediction/blob/master/IPython%20Process%20Notebook.ipynb) for more technical details.
