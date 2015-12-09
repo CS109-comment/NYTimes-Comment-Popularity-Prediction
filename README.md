@@ -1,4 +1,4 @@
-# NYTimes Comment Popularity Prediction
+# Predicting NYTimes Comment Success
 
 For our AC209 (Data Science) final course project, we predicted New York Times comment popularity.
 
