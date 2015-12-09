@@ -56,16 +56,18 @@
 <h3>
 <a id="majority-of-comments-receive-5-recommendations" class="anchor" href="#majority-of-comments-receive-5-recommendations" aria-hidden="true"><span class="octicon octicon-link"></span></a>Majority of comments receive &lt;5 recommendations</h3>
 
-<p>As it turns out, most comments receive fewer than five recommendations. However, there are examples of highly recommended comments; we found a comment with 3,064 recommendations.</p>
+<p>As it turns out, most comments receive fewer than five recommendations. However, there are examples of highly
+    recommended comments (not shown). With a max of 3,064 recommendations, the mean is larger relative to the median.
+</p>
+        <p align="center">
+    <img src="hist.png">
+</p>
+
 
 <h3>
 <a id="its-hard-to-be-a-nyt-pick" class="anchor" href="#its-hard-to-be-a-nyt-pick" aria-hidden="true"><span class="octicon octicon-link"></span></a>It's hard to be a NYT Pick</h3>
 
 <p>Out of our 180,000 comments, we found less than 3% to be designated as Editor's Pick. Of those picks, we see that they get more recommendations that those that are not picks. Specifically, NYT Picks comments receive an average of 180 recommendations. A high correlation between recommendation count and NYT Pick would not be surprising, but it is an interesting statistic nonetheless. </p>
-
-<p align="center">
-    <img src="NYTPicks.png" width="600">
-</p>
 
 <h2>
 <a id="the-data" class="anchor" href="#the-data" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Data</h2>
@@ -89,16 +91,6 @@
 <p>We use a binary bag of words feature that encodes which of the 200 most popular words appear in a comment.</p>
 
 <h4>
-<a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h4>
-
-<p>We used sentiment analysis to extract a positive and negative sentiment score for every comment. We hypothesized that comment recommendations may depend on sentiment, as posts with a strong sentiment are likely to be more controversial than neutral posts.</p>
-
-<h4>
-<a id="tf-idf" class="anchor" href="#tf-idf" aria-hidden="true"><span class="octicon octicon-link"></span></a>Tf-idf</h4>
-
-<p>Intuitively, tf-idf measures how important a word is in a document compared with how important the word is to the corpus as a whole. Words that appear frequently in documents but appear rarely in the corpus receive high scores.</p>
-
-<h4>
 <a id="avg-word-length" class="anchor" href="#avg-word-length" aria-hidden="true"><span class="octicon octicon-link"></span></a>Avg. word length</h4>
 
 <p>Longer, more sophisticated word usage may correlate with better comments.</p>
@@ -107,6 +99,25 @@
 <a id="word-count" class="anchor" href="#word-count" aria-hidden="true"><span class="octicon octicon-link"></span></a>Word count</h4>
 
 <p>The word count may be indicative of the quality of a comment.</p>
+
+<h4>
+<a id="sentiment" class="anchor" href="#sentiment" aria-hidden="true"><span class="octicon octicon-link"></span></a>Sentiment</h4>
+
+<p>We used sentiment analysis to extract a positive and negative sentiment score for every comment. We hypothesized that comment recommendations may depend on sentiment, as posts with a strong sentiment are likely to be more controversial than neutral posts.</p>
+
+<h4>
+<a id="Term specificity (tf-idf)" class="anchor" href="#Term specificity (tf-idf)"
+   aria-hidden="true"><span class="octicon octicon-link"></span></a>Term specificity (tf-idf)</h4>
+
+<p>Intuitively, tf-idf measures how important a word is in a document compared with how important the word is to the corpus as a whole. Words that appear frequently in documents but appear rarely in the corpus receive high scores.</p>
+<p>We investigated various relationships between the above features. For example, below is a scatter plot depicting
+    the relationship between a comment's positive sentiment score and its term specificity (tf-idf) score. As shown,
+    as comments become more positive and their terms more specific, they appear to receive more recommendations.
+</p>
+
+<p align="center">
+    <img src="scatter.png">
+</p>
 
 <h2>
 <a id="the-model" class="anchor" href="#the-model" aria-hidden="true"><span class="octicon octicon-link"></span></a>The Model</h2>
@@ -121,8 +132,10 @@
 <p>Here's a summary of our results:</p>
 
 <p align="center">
-    <img src="confusion.png">
+    <img src="confusion.png" width="600">
 </p>
+            <br>
+        </p>
 
 <p>As you can see, we are dealing with a substantial amount of false negatives. This means it is hard for the model to mark actual good posts as good. Identifying bad comments, ones that have a low recommendation count, on the other hand, is easy.</p>
 
